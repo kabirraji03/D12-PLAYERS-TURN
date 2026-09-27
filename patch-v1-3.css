@@ -10,6 +10,8 @@
 #sourceChart{max-width:230px!important;max-height:230px!important;width:100%!important;height:auto!important;margin:0 auto!important;display:block!important}
 .chart-card:has(#sourceChart){display:flex;flex-direction:column;align-items:center;justify-content:flex-start;overflow:hidden}
 .chart-card:has(#sourceChart) h3{align-self:stretch}
+/* Overview no longer runs a perpetual pulse. Meaningful realtime data changes animate the charts once via v1.3 JS. */
+.pulse-dot{animation:none!important;box-shadow:0 0 12px color-mix(in srgb,var(--accent) 72%,transparent)!important}
 
 .v13-move-notice{margin-bottom:16px}
 .v13-approvals{margin-bottom:18px}
