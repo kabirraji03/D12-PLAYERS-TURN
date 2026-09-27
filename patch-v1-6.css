@@ -1,0 +1,145 @@
+/* D12 PLAYERS TURN v1.6 — symmetrical versus layout + reference-style credits */
+
+/* Live match balance: LEFT PHOTO · LEFT NAME · VS · RIGHT NAME · RIGHT PHOTO */
+.rack-card .match-box .versus{
+  display:grid!important;
+  grid-template-columns:minmax(42px,56px) minmax(0,1fr) 52px minmax(0,1fr) minmax(42px,56px)!important;
+  align-items:center!important;
+  justify-items:center!important;
+  gap:12px!important;
+  width:100%!important;
+}
+.rack-card .match-box .versus>:nth-child(1){grid-column:1!important;grid-row:1!important}
+.rack-card .match-box .versus>:nth-child(2){grid-column:2!important;grid-row:1!important;text-align:center!important;width:100%}
+.rack-card .match-box .versus>:nth-child(3){grid-column:3!important;grid-row:1!important}
+.rack-card .match-box .versus>:nth-child(4){grid-column:5!important;grid-row:1!important}
+.rack-card .match-box .versus>:nth-child(5){grid-column:4!important;grid-row:1!important;text-align:center!important;width:100%}
+.rack-card .match-box .versus .avatar{justify-self:center!important}
+.rack-card .match-box .versus b{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+/* Credits/copyright treatment based on the supplied wide + compact reference images */
+.app-credit.v16-credit{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) auto!important;
+  align-items:center!important;
+  gap:22px!important;
+  width:100%!important;
+  max-width:none!important;
+  margin:18px 0 6px!important;
+  padding:16px 18px!important;
+  border:1px solid rgba(195,165,105,.48)!important;
+  border-radius:20px!important;
+  background:linear-gradient(145deg,rgba(41,46,47,.95),rgba(31,36,38,.94))!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 9px 30px rgba(0,0,0,.20)!important;
+  color:#f6f3ea!important;
+  text-align:left!important;
+}
+.v16-credit-left{
+  display:grid;
+  gap:5px;
+  min-width:0;
+  text-transform:uppercase;
+}
+.v16-credit-left strong{
+  color:#fff;
+  font-size:12px;
+  line-height:1.2;
+  letter-spacing:.025em;
+}
+.v16-credit-left span{
+  color:#c6c3b9;
+  font-size:9px;
+  line-height:1.25;
+  letter-spacing:.08em;
+  font-weight:700;
+}
+.v16-credit-right{
+  display:grid;
+  justify-items:end;
+  gap:7px;
+}
+.v16-designed-by{
+  color:#ded7c8;
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:.19em;
+  text-transform:uppercase;
+}
+.v16-credit-logo-frame{
+  width:154px;
+  height:62px;
+  display:grid;
+  place-items:center;
+  padding:7px 12px;
+  overflow:hidden;
+  border:1px solid rgba(189,135,37,.35);
+  border-radius:12px;
+  background:#15151a;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.04),0 7px 18px rgba(0,0,0,.26);
+}
+.v16-credit-logo-frame .credit-cuestrokes-logo{
+  display:block;
+  width:100%!important;
+  height:100%!important;
+  max-width:132px!important;
+  max-height:50px!important;
+  margin:0!important;
+  border-radius:0!important;
+  object-fit:contain!important;
+  object-position:center!important;
+}
+
+/* Login and narrow-player contexts use the compact stacked reference style */
+.login-credit.v16-credit,
+.player-shell .v16-credit{
+  grid-template-columns:1fr!important;
+  justify-items:center!important;
+  text-align:center!important;
+}
+.login-credit .v16-credit-left,
+.player-shell .v16-credit-left{justify-items:center}
+.login-credit .v16-credit-right,
+.player-shell .v16-credit-right{justify-items:center}
+.login-credit .v16-credit-logo-frame,
+.player-shell .v16-credit-logo-frame{width:min(100%,340px);height:86px;padding:10px 18px}
+.login-credit .credit-cuestrokes-logo,
+.player-shell .credit-cuestrokes-logo{max-width:230px!important;max-height:70px!important}
+
+html[data-theme="light"] .app-credit.v16-credit{
+  background:linear-gradient(145deg,#f2f2ef,#e5e5e1)!important;
+  color:#17191b!important;
+  border-color:rgba(111,91,53,.42)!important;
+}
+html[data-theme="light"] .v16-credit-left strong{color:#17191b!important}
+html[data-theme="light"] .v16-credit-left span,
+html[data-theme="light"] .v16-designed-by{color:#5f5c55!important}
+
+@media(max-width:720px){
+  .rack-card .match-box .versus{
+    grid-template-columns:38px minmax(0,1fr) 34px minmax(0,1fr) 38px!important;
+    gap:7px!important;
+  }
+  .rack-card .match-box .versus b{font-size:12px!important}
+  .rack-card .match-box .versus .avatar{width:36px!important;height:36px!important}
+  .app-credit.v16-credit{
+    grid-template-columns:1fr!important;
+    justify-items:center!important;
+    gap:12px!important;
+    padding:14px 12px!important;
+    text-align:center!important;
+  }
+  .v16-credit-left,.v16-credit-right{justify-items:center!important}
+  .v16-credit-logo-frame{width:min(100%,340px);height:82px;padding:9px 16px}
+  .v16-credit-logo-frame .credit-cuestrokes-logo{max-width:220px!important;max-height:66px!important}
+}
+
+@media(max-width:420px){
+  .rack-card .match-box .versus{
+    grid-template-columns:32px minmax(0,1fr) 30px minmax(0,1fr) 32px!important;
+    gap:5px!important;
+  }
+  .rack-card .match-box .versus .avatar{width:31px!important;height:31px!important}
+  .rack-card .match-box .versus b{font-size:11px!important}
+  .v16-credit-left strong{font-size:11px}
+  .v16-credit-left span,.v16-designed-by{font-size:8px}
+}
