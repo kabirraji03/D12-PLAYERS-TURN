@@ -22,7 +22,7 @@ function saveSession(j){token=j.token;role=j.role;localStorage.setItem('d12turn_
 function clearSession(){token='';role='';data=null;localStorage.removeItem('d12turn_token');localStorage.removeItem('d12turn_role');clearInterval(poller);poller=null}
 async function logout(){try{await member('logout')}catch{}clearSession();renderLogin()}
 
-function logo(){return '<img class="brand-logo" src="../d12-app-icon.svg" alt="D12">'}
+function logo(){return '<img class="brand-logo" src="./d12-app-icon.svg" alt="D12">'}
 function topbar(){return `<div class="topbar glass"><div class="brand">${logo()}<div><h1>D12 PLAYERS TURN</h1><small>Version ${esc(data?.settings?.app_version||config?.app_version||'1.0')} · Live playing-turn control</small></div></div><div class="top-actions"><div class="sync"><span class="dot ${online?'':'off'}"></span>${online?'LIVE SYNC':'OFFLINE'}</div><button class="icon-btn" onclick="toggleTheme()" title="Theme">◐</button><button class="btn small" onclick="logout()">Logout</button></div></div>`}
 function nav(){const allowed=data?.role==='admin'?['dashboard','cashier','rackmaster','settings','audit']:data?.role==='cashier'?['dashboard','cashier']:data?.role==='rackmaster'?['dashboard','rackmaster']:['dashboard'];const labels={dashboard:'⌂ Overview',cashier:'₦ Cashier',rackmaster:'◎ Rackmaster',settings:'⚙ Settings',audit:'≡ Audit'};return `<div class="nav">${allowed.map(x=>`<button class="${view===x?'active':''}" onclick="go('${x}')">${labels[x]}</button>`).join('')}</div>`}
 function go(v){view=v;renderApp()}
