@@ -1,5 +1,5 @@
 const CACHE='d12-turn-v1-3-1';
-const SHELL=['./','./index.html','./app.css?v=1.1.0','./patch-v1-2.css?v=1.2.0','./patch-v1-3.css?v=1.3.0','./app.js?v=1.1.0','./patch-v1-2.js?v=1.2.0','./patch-v1-3.js?v=1.3.0','./patch-v1-3-hotfix.js?v=1.3.1','./manifest.webmanifest?v=1.3','./d12-app-icon.svg','./d12-cue-club-logo-v1-1.svg'];
+const SHELL=['./','./index.html','./app.css?v=1.1.0','./patch-v1-2.css?v=1.2.0','./patch-v1-3.css?v=1.3.1','./app.js?v=1.1.0','./patch-v1-2.js?v=1.2.0','./patch-v1-3.js?v=1.3.0','./patch-v1-3-hotfix.js?v=1.3.1','./manifest.webmanifest?v=1.3','./d12-app-icon.svg','./d12-cue-club-logo-v1-1.svg'];
 self.addEventListener('install',e=>{e.waitUntil(caches.open(CACHE).then(c=>c.addAll(SHELL).catch(()=>{})));self.skipWaiting()});
 self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k)))));self.clients.claim()});
 self.addEventListener('fetch',e=>{if(e.request.method!=='GET')return;e.respondWith(fetch(e.request).then(r=>{const c=r.clone();caches.open(CACHE).then(x=>x.put(e.request,c)).catch(()=>{});return r}).catch(()=>caches.match(e.request).then(r=>r||caches.match('./index.html'))))});
