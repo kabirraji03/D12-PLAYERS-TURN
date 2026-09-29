@@ -1,0 +1,27 @@
+/* D12 PLAYERS TURN v1.6.1 — workflow controls, dark grey theme, player-portal white fix */
+html[data-theme="darkgray"]{--bg:#24272b;--panel:rgba(55,59,64,.88);--panel2:rgba(255,255,255,.075);--text:#f4f5f6;--muted:#bfc3c7;--line:rgba(255,255,255,.14);--accent:#70e1aa;--accent2:#9bcaff;--danger:#ff7580;--warn:#ffd07a;--shadow:0 18px 55px rgba(0,0,0,.30);color-scheme:dark}
+html[data-theme="darkgray"],html[data-theme="darkgray"] body{background:radial-gradient(circle at 12% 0%,rgba(255,255,255,.035),transparent 30%),#24272b!important}
+
+html[data-theme="light"],html[data-theme="light"] body{background:#f6f7f8!important;color:#111b17!important}
+html[data-theme="light"] .player-shell{background:#f6f7f8!important;color:#111b17!important}
+html[data-theme="light"] .player-shell .glass,html[data-theme="light"] .player-shell .card,html[data-theme="light"] .player-shell .topbar{background:rgba(255,255,255,.96)!important;color:#111b17!important;border-color:rgba(15,35,27,.13)!important;box-shadow:0 10px 34px rgba(20,30,26,.08)!important}
+html[data-theme="light"] .player-shell .summary-card,html[data-theme="light"] .player-shell .portal-notice,html[data-theme="light"] .player-shell .position-ring{background:#fff!important;color:#111b17!important}
+html[data-theme="light"] .player-shell .btn:not(.primary):not(.danger):not(.good){background:#edf1ef!important;color:#14221c!important;border-color:#ccd5d1!important}
+html[data-theme="light"] .player-shell .mini-select{background:#171b20!important;color:#fff!important}
+html[data-theme="light"] .player-shell .mini-select option{background:#fff!important;color:#111!important}
+
+.v161-contrast-select,#shiftForm select,#createStaffForm select{background:#777!important;color:#000!important;border-color:#9b9b9b!important;font-weight:800}
+.v161-contrast-select option,#shiftForm select option,#createStaffForm select option{background:#888!important;color:#000!important}
+
+.approval-panel,.v161-admin-panel{margin:16px 0}.approval-row{display:flex;align-items:center;gap:12px;padding:12px;margin-top:9px;border:1px solid var(--line);border-radius:17px;background:var(--panel2)}.approval-row small{display:block;margin-top:4px}.approval-state{display:flex;gap:7px;flex-wrap:wrap;margin-top:7px}.approval-state span{font-size:9px;font-weight:900;letter-spacing:.05em;padding:5px 8px;border-radius:999px;background:var(--panel);border:1px solid var(--line);text-transform:uppercase}.clearance-label{max-width:190px;white-space:normal;line-height:1.2}.leave-arena-btn{border-color:color-mix(in srgb,var(--danger) 45%,var(--line))!important}.queue-actions{flex-wrap:wrap;justify-content:flex-end}
+
+.go-table-btn{background:linear-gradient(145deg,rgba(74,245,158,.25),rgba(49,152,105,.20))!important;border-color:rgba(76,244,158,.45)!important;color:var(--text)!important;font-weight:900;box-shadow:inset 0 1px 0 rgba(255,255,255,.20),0 0 18px rgba(72,245,158,.24)!important}.go-table-btn:hover{box-shadow:inset 0 1px 0 rgba(255,255,255,.25),0 0 27px rgba(72,245,158,.40)!important}.go-table-flash{animation:v161GoTable 1.8s ease}.v161-active-hero{justify-content:space-between}.registry-delete-toolbar{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:16px}
+
+.player-portal-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}.move-player-btn{background:linear-gradient(145deg,rgba(126,186,255,.22),rgba(90,122,255,.12))!important;border-color:rgba(126,186,255,.42)!important;font-weight:850}.transfer-status-card{margin-top:14px;border-color:color-mix(in srgb,var(--warn) 42%,var(--line))!important}.player-table-summary{margin-top:14px}.portal-notice{display:grid;gap:3px;padding:11px 12px;border-radius:13px;background:var(--panel2);margin-top:8px}.portal-notice b{font-size:10px;letter-spacing:.07em;color:var(--accent)}.portal-notice span{font-size:12px;color:var(--muted)}
+
+#memberQueueForm{grid-template-columns:minmax(220px,1fr) minmax(180px,.55fr) auto!important;align-items:end!important}#memberQueueForm #membershipPreview{grid-column:1/-1}#memberQueueForm .member-verify-card{margin:0}
+
+@keyframes v161GoTable{0%,100%{box-shadow:var(--shadow)}25%,70%{box-shadow:0 0 0 2px rgba(76,244,158,.45),0 0 44px rgba(76,244,158,.46)}}
+
+@media(max-width:980px){.approval-row{flex-wrap:wrap}.approval-row .grow{min-width:220px}.v161-active-hero{align-items:center}.queue-actions{width:100%;justify-content:flex-start;padding-left:44px}.registry-delete-toolbar{align-items:center}}
+@media(max-width:620px){.approval-row{display:grid;grid-template-columns:auto 1fr}.approval-row .grow{min-width:0}.approval-row .btn{width:100%;grid-column:1/-1}.approval-state{grid-column:1/-1}.queue-actions{padding-left:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));width:100%}.queue-actions .btn,.queue-actions .icon-action{width:100%;min-width:0}.leave-arena-btn{grid-column:1/-1}.v161-active-hero{display:grid!important;grid-template-columns:1fr}.delete-select-btn{width:100%}.active-player-card{align-items:flex-start;flex-wrap:wrap}.active-player-card .go-table-btn{width:100%;order:4}.registry-delete-toolbar{display:grid}.registry-delete-toolbar .btn{width:100%}.player-portal-actions{display:grid;grid-template-columns:1fr}.player-portal-actions .btn{width:100%}#memberQueueForm{display:grid!important;grid-template-columns:1fr!important}#memberQueueForm>*{grid-column:1!important}.clearance-label{max-width:100%}}
