@@ -47,7 +47,7 @@ function saveSession(j){token=j.token;localStorage.setItem('d12turn_token',token
 async function boot(){
   config=await turn('public_config',{},false).catch(()=>({app_version:'1.1'}));
   if('serviceWorker'in navigator)navigator.serviceWorker.register('./sw.js').catch(()=>{});
-  if(ticketParam){localStorage.setItem('d12turn_player_ticket',ticketParam);renderPlayerShell();pollPlayer(true);poller=setInterval(()=>pollPlayer(false),2200);return}
+  if(ticketParam){localStorage.setItem('d12turn_player_ticket',ticketParam);renderPlayerShell();pollPlayer(true);poller=setInterval(()=>{if(!document.hidden)pollPlayer(false)},10000);return}
   if(token){try{await enterApp();return}catch{token='';localStorage.removeItem('d12turn_token')}}
   renderLogin();
 }
@@ -72,7 +72,7 @@ function renderLogin(tab='admin'){
       if(tab==='player'){
         let raw=String(f.get('ticket')||'').trim();
         try{const u=new URL(raw);raw=u.searchParams.get('ticket')||raw}catch{}
-        const j=await turn('player_login',{ticket:raw},false);ticketParam=j.ticket;localStorage.setItem('d12turn_player_ticket',ticketParam);renderPlayerShell();pollPlayer(true);poller=setInterval(()=>pollPlayer(false),2200);return;
+        const j=await turn('player_login',{ticket:raw},false);ticketParam=j.ticket;localStorage.setItem('d12turn_player_ticket',ticketParam);renderPlayerShell();pollPlayer(true);poller=setInterval(()=>{if(!document.hidden)pollPlayer(false)},10000);return;
       }
       const j=tab==='admin'?await member('staff_login',{role:'admin',password:f.get('password')},false):await member('staff_login',{role:'staff',username:f.get('username'),password:f.get('password')},false);
       saveSession(j);await enterApp();
@@ -82,7 +82,7 @@ function renderLogin(tab='admin'){
 }
 async function enterApp(){
   data=await turn('bootstrap');role=data.role;localStorage.setItem('d12turn_role',role);
-  view='overview';renderApp();clearInterval(poller);poller=setInterval(()=>refresh(true),2200);
+  view='overview';renderApp();clearInterval(poller);poller=setInterval(()=>{if(!document.hidden)refresh(true)},10000);
 }
 async function refresh(silent=true){
   if(!token)return;
