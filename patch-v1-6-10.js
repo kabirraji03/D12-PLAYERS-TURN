@@ -78,9 +78,9 @@ function v1610DecorateStaffQueries(){
   $$('.staff-slot').forEach(slot=>{
     if(slot.querySelector('.v1610-query-bar'))return;
     const btn=slot.querySelector('[onclick*="pickStaffPhoto"]'),m=btn?.getAttribute('onclick')?.match(/pickStaffPhoto\('([^']+)'/);if(!m)return;
-    const id=m[1],qs=v1610QueriesForStaff(id),n=qs.length,pct=Math.min(100,n*20),sev=v1610QuerySeverity(n);
+    const id=m[1],qs=v1610QueriesForStaff(id),n=qs.length,pct=Math.min(100,n*20),sev=v1610QuerySeverity(n),latest=qs.slice().sort((a,b)=>new Date(b.issued_at)-new Date(a.issued_at))[0];
     const bar=document.createElement('button');bar.className='v1610-query-bar';bar.onclick=()=>openStaffQueryDetails1610(id);
-    bar.innerHTML=`<span><b>MONTHLY QUERY LOAD</b><em class="${sev[1]}">${sev[0]} · ${n} QUERY${n===1?'':'IES'}</em></span><i><u style="width:${pct}%"></u></i><small>${pct}%</small>`;
+    bar.innerHTML=`<span><b>MONTHLY QUERY LOAD${latest?' · '+esc(v166AbujaStamp(latest.issued_at)):''}</b><em class="${sev[1]}">${sev[0]} · ${n} QUERY${n===1?'':'IES'}</em></span><i><u style="width:${pct}%"></u></i><small>${pct}%</small>`;
     slot.appendChild(bar);
   });
 }
