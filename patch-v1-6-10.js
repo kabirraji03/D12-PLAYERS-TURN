@@ -70,7 +70,8 @@ go=function(v){
 function v1610QuerySeverity(n){if(n>=5)return ['CRITICAL','danger'];if(n===4)return ['SERIOUS','danger'];if(n===3)return ['ELEVATED','warn'];if(n===2)return ['MODERATE','pending'];if(n===1)return ['MONITOR','pending'];return ['CLEAR','good']}
 function v1610DecorateStaffQueries(){
   if(view!=='staff'||role!=='admin')return;
-  $$('.staff-slot').forEach(slot=>{
+  if(!v1610ConductLoaded){v1610LoadConduct(true).then(()=>v1610DecorateStaffQueries()).catch(e=>toast(e.message));return}
+  $('.staff-slot').forEach(slot=>{
     if(slot.querySelector('.v1610-query-bar'))return;
     const btn=slot.querySelector('[onclick*="pickStaffPhoto"]'),m=btn?.getAttribute('onclick')?.match(/pickStaffPhoto\('([^']+)'/);if(!m)return;
     const id=m[1],qs=v1610QueriesForStaff(id),n=qs.length,pct=Math.min(100,n*20),sev=v1610QuerySeverity(n);
@@ -78,7 +79,6 @@ function v1610DecorateStaffQueries(){
     bar.innerHTML=`<span><b>MONTHLY QUERY LOAD</b><em class="${sev[1]}">${sev[0]} · ${n} QUERY${n===1?'':'IES'}</em></span><i><u style="width:${pct}%"></u></i><small>${pct}%</small>`;
     slot.appendChild(bar);
   });
-  if(!v1610ConductLoaded)v1610LoadConduct(true).then(()=>v1610DecorateStaffQueries()).catch(()=>{});
 }
 function openStaffQueryDetails1610(staffId){
   const st=v1610ConductStaff(staffId),qs=v1610QueriesForStaff(staffId),sev=v1610QuerySeverity(qs.length);
