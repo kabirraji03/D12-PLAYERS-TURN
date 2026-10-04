@@ -1,7 +1,7 @@
 // D12 PLAYERS TURN v1.6.10 — Player staff reports + Admin complaints/query management
 const V1610_CONDUCT_API='https://ydveditxorbtqufwnzpt.supabase.co/functions/v1/d12-staff-conduct-v1610';
 const v1610Conduct=(a,p={},auth=true)=>api(V1610_CONDUCT_API,a,p,auth);
-let v1610ConductData={staff:[],complaints:[],queries:[]},v1610ConductLoaded=false,v1610ConductAt=0,v1610PublicStaff=null;
+let v1610ConductData={staff:[],complaints:[],queries:[]},v1610ConductLoaded=false,v1610ConductAt=0,v1610PublicStaff=null,v1610ConductPromise=null;
 
 function v1610MonthKey(value=new Date()){
   try{
@@ -19,9 +19,13 @@ function v1610ConductStaff(id){return (v1610ConductData.staff||[]).find(s=>s.id=
 async function v1610LoadConduct(force=false){
   if(role!=='admin')return v1610ConductData;
   if(!force&&v1610ConductLoaded&&Date.now()-v1610ConductAt<60000)return v1610ConductData;
-  const j=await v1610Conduct('admin_bootstrap');
-  v1610ConductData={staff:j.staff||[],complaints:j.complaints||[],queries:j.queries||[]};v1610ConductLoaded=true;v1610ConductAt=Date.now();
-  return v1610ConductData;
+  if(v1610ConductPromise)return v1610ConductPromise;
+  v1610ConductPromise=(async()=>{
+    const j=await v1610Conduct('admin_bootstrap');
+    v1610ConductData={staff:j.staff||[],complaints:j.complaints||[],queries:j.queries||[]};v1610ConductLoaded=true;v1610ConductAt=Date.now();
+    return v1610ConductData;
+  })();
+  try{return await v1610ConductPromise}finally{v1610ConductPromise=null}
 }
 
 const v1610AllowedNavBase=allowedNav;
