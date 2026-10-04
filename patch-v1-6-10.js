@@ -75,7 +75,7 @@ function v1610QuerySeverity(n){if(n>=5)return ['CRITICAL','danger'];if(n===4)ret
 function v1610DecorateStaffQueries(){
   if(view!=='staff'||role!=='admin')return;
   if(!v1610ConductLoaded){v1610LoadConduct(true).then(()=>v1610DecorateStaffQueries()).catch(e=>toast(e.message));return}
-  $('.staff-slot').forEach(slot=>{
+  $$('.staff-slot').forEach(slot=>{
     if(slot.querySelector('.v1610-query-bar'))return;
     const btn=slot.querySelector('[onclick*="pickStaffPhoto"]'),m=btn?.getAttribute('onclick')?.match(/pickStaffPhoto\('([^']+)'/);if(!m)return;
     const id=m[1],qs=v1610QueriesForStaff(id),n=qs.length,pct=Math.min(100,n*20),sev=v1610QuerySeverity(n);
