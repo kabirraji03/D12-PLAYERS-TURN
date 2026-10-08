@@ -25,7 +25,7 @@ function v173AllStaffShiftSection(){
         ${[0,1,2,3].map(i=>`<article class="glass v173-rack-row"><div class="field"><label>RACKMASTER ${i+1}</label><select id="v173Rack${i+1}" onchange="v173RefreshRackLabels()"><option value="">Select Rackmaster</option>${v173Options(racks,racks[i]?.id||'')}</select></div><div class="field"><label id="v173RackLabel${i+1}">TABLE ASSIGNMENT</label><select id="v173Table${i+1}"><option value="">Select Table</option>${v173Options(tables,tables[i]?.id||'')}</select></div></article>`).join('')}
       </div>
       <div class="v173-shift-summary glass"><i>◉</i><div><b>6 STAFF ACTIVE</b><span>2 Cashiers · 4 Rackmasters · 4 uniquely assigned tables</span></div></div>
-      <div class="v173-shift-actions"><button class="btn" onclick="saveAllStaffCombination173()">💾 Save Staff Combination</button><button class="btn primary" onclick="startAllStaffShift173()">▶ Activate All Staff Shift</button><button class="btn" onclick="openSavedCombinations169()">⚡ Load Saved Combination</button></div>
+      <div class="v173-shift-actions"><button class="btn" onclick="saveAllStaffCombination173(event)">💾 Save Staff Combination</button><button class="btn primary" onclick="startAllStaffShift173(event)">▶ Activate All Staff Shift</button><button class="btn" onclick="openSavedCombinations169()">⚡ Load Saved Combination</button></div>
     </div>
   </section>`;
 }
@@ -49,10 +49,10 @@ function v173ReadConfig(){
 function v173Busy(btn,on,label='Working…'){
   if(!btn)return;if(on){btn.dataset.v173Text=btn.innerHTML;btn.disabled=true;btn.innerHTML='<span class="v173-spinner"></span> '+label}else{btn.disabled=false;if(btn.dataset.v173Text)btn.innerHTML=btn.dataset.v173Text}
 }
-async function saveAllStaffCombination173(){
-  const btn=event?.currentTarget;try{const cfg=v173ReadConfig();v173Busy(btn,true,'Saving…');const j=await v173('save_all_staff_template',{template_name:cfg.shift_name,cashier_staff_ids:cfg.cashier_staff_ids,rackmaster_assignments:cfg.rackmaster_assignments});const list=data.shift_templates||[];data.shift_templates=[...list.filter(x=>x.id!==j.template.id),j.template];toast(j.message||'All Staff Active combination saved.');renderApp(true);setTimeout(()=>{const cb=$('#v173EnableAllStaff');if(cb){cb.checked=true;toggleAllStaff173(true);v173FillConfig(j.template)}},0)}catch(e){toast(e.message)}finally{v173Busy(btn,false)}}
-async function startAllStaffShift173(){
-  const btn=event?.currentTarget;try{const cfg=v173ReadConfig();if(!confirm('Activate ALL STAFF now? Both Cashiers and all 4 Rackmasters will be active on the selected tables.'))return;v173Busy(btn,true,'Activating…');const j=await v173('start_all_staff',cfg);data.active_shift=j.shift;data.shift_tables=j.shift.table_assignments||[];if(data.shifts)data.shifts=[j.shift,...data.shifts.filter(x=>x.id!==j.shift.id)];toast(j.message||'All Staff Active shift started.');renderApp(true)}catch(e){toast(e.message)}finally{v173Busy(btn,false)}}
+async function saveAllStaffCombination173(ev){
+  const btn=ev?.currentTarget;try{const cfg=v173ReadConfig();v173Busy(btn,true,'Saving…');const j=await v173('save_all_staff_template',{template_name:cfg.shift_name,cashier_staff_ids:cfg.cashier_staff_ids,rackmaster_assignments:cfg.rackmaster_assignments});const list=data.shift_templates||[];data.shift_templates=[...list.filter(x=>x.id!==j.template.id),j.template];toast(j.message||'All Staff Active combination saved.');renderApp(true);setTimeout(()=>{const cb=$('#v173EnableAllStaff');if(cb){cb.checked=true;toggleAllStaff173(true);v173FillConfig(j.template)}},0)}catch(e){toast(e.message)}finally{v173Busy(btn,false)}}
+async function startAllStaffShift173(ev){
+  const btn=ev?.currentTarget;try{const cfg=v173ReadConfig();if(!confirm('Activate ALL STAFF now? Both Cashiers and all 4 Rackmasters will be active on the selected tables.'))return;v173Busy(btn,true,'Activating…');const j=await v173('start_all_staff',cfg);data.active_shift=j.shift;data.shift_tables=j.shift.table_assignments||[];if(data.shifts)data.shifts=[j.shift,...data.shifts.filter(x=>x.id!==j.shift.id)];toast(j.message||'All Staff Active shift started.');renderApp(true)}catch(e){toast(e.message)}finally{v173Busy(btn,false)}}
 
 const v173SettingsBase=settingsView;
 settingsView=function(){const base=v173SettingsBase();return role==='admin'?v173AllStaffShiftSection()+base:base};
@@ -73,15 +73,15 @@ const v173OpenSavedBase=openSavedCombinations169;
 openSavedCombinations169=async function(){
   const templates=data.shift_templates||[],full=templates.filter(t=>t.shift_mode==='all_staff'),standard=templates.filter(t=>t.shift_mode!=='all_staff');
   const standardHtml=standard.map(t=>`<article class="v169-preset-card glass"><div class="grow"><b>${esc(t.template_name)}</b><small>STANDARD SHIFT</small><span>${esc(v169StaffName(t.rackmaster_1_staff_id)||'Rackmaster 1')} + ${esc(v169StaffName(t.rackmaster_2_staff_id)||'Rackmaster 2')}</span></div><button class="btn primary" onclick="applyShiftTemplate169('${t.id}')">Load Into Shift</button></article>`).join('');
-  const fullHtml=full.map(t=>{const cash=(t.cashier_staff_ids||[]).map(v169StaffName).filter(Boolean).join(' + '),racks=(Array.isArray(t.rackmaster_assignments)?t.rackmaster_assignments:[]).map(x=>v169StaffName(x.staff_id)).filter(Boolean).join(' · ');return `<article class="v169-preset-card glass v173-full-preset"><div class="grow"><div class="row wrap"><b>${esc(t.template_name)}</b><span class="pill good">ALL STAFF ACTIVE</span></div><small>Cashiers · ${esc(cash||'2 Cashiers')}</small><span>${esc(racks||'4 Rackmasters')}</span></div><button class="btn primary" onclick="loadAllStaffCombination173('${t.id}')">Load Setup</button><button class="btn good" onclick="startShiftTemplate166('${t.id}')">▶ Start</button></article>`}).join('');
+  const fullHtml=full.map(t=>{const cash=(t.cashier_staff_ids||[]).map(v169StaffName).filter(Boolean).join(' + '),racks=(Array.isArray(t.rackmaster_assignments)?t.rackmaster_assignments:[]).map(x=>v169StaffName(x.staff_id)).filter(Boolean).join(' · ');return `<article class="v169-preset-card glass v173-full-preset"><div class="grow"><div class="row wrap"><b>${esc(t.template_name)}</b><span class="pill good">ALL STAFF ACTIVE</span></div><small>Cashiers · ${esc(cash||'2 Cashiers')}</small><span>${esc(racks||'4 Rackmasters')}</span></div><button class="btn primary" onclick="loadAllStaffCombination173('${t.id}')">Load Setup</button><button class="btn good" onclick="startShiftTemplate166('${t.id}',event)">▶ Start</button></article>`}).join('');
   openModal(`<div class="modal-head"><div><div class="eyebrow">SAVED STAFF COMBINATIONS</div><h2>Load Shift Preset</h2><p class="muted">Standard and All Staff Active combinations use the same saved-combination library.</p></div><button class="icon-btn" onclick="closeModal()">×</button></div><div class="v169-preset-list">${fullHtml}${standardHtml}${!templates.length?'<div class="empty">No saved staff combinations yet.</div>':''}</div>`);
 };
 const v173StartTemplateBase=startShiftTemplate166;
-startShiftTemplate166=async function(id){
+startShiftTemplate166=async function(id,ev){
   const t=(data.shift_templates||[]).find(x=>x.id===id);
   if(!t||t.shift_mode!=='all_staff')return v173StartTemplateBase(id);
   if(!confirm('Start this ALL STAFF ACTIVE combination now? Both Cashiers and all 4 Rackmasters will become active.'))return;
-  const btn=event?.currentTarget;try{v173Busy(btn,true,'Starting…');const j=await v173('start_all_staff_template',{template_id:id});data.active_shift=j.shift;data.shift_tables=j.shift.table_assignments||[];closeModal();toast(j.message);renderApp(true)}catch(e){toast(e.message)}finally{v173Busy(btn,false)}
+  const btn=ev?.currentTarget;try{v173Busy(btn,true,'Starting…');const j=await v173('start_all_staff_template',{template_id:id});data.active_shift=j.shift;data.shift_tables=j.shift.table_assignments||[];closeModal();toast(j.message);renderApp(true)}catch(e){toast(e.message)}finally{v173Busy(btn,false)}
 };
 
 // Add a clear badge to the existing Staff & Shifts workspace when All Staff Active mode is running.
