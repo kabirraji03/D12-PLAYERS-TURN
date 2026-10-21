@@ -127,6 +127,7 @@ startNext=async function(tableId){
     optimistic=v178PredictStart(tableId);
     renderApp(true);
     hapticCall(false);
+    toast('Starting match — confirming…');
     const j=await turn('start_next',{table_id:tableId});
     v178ConfirmStart(optimistic.id,j.result||{});
     toast('Match started');
@@ -158,10 +159,11 @@ openFinishMatch=function(matchId){
       local=v178OptimisticFinish(matchId,winner,act,target);
       closeModal();
       renderApp(true);
-      toast(act==='appeal'?'Appeal created — awaiting cashier confirmation':'Result saved');
+      toast(act==='appeal'?'Creating appeal — confirming…':'Result applied — confirming…');
       const j=await turn('finish_match',{match_id:matchId,winner_player_id:winner,loser_action:act,target_table_id:target});
       v178ConfirmFinish(local,j.result||{});
       renderApp(true);
+      toast(act==='appeal'?'Appeal created — cashier must clear payment':'Result saved');
       // Deliberately no refresh(): normal revision-gated synchronization will reconcile shortly.
     }catch(x){
       v178Restore(snap);toast(x.message);
