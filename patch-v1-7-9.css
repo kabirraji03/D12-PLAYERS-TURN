@@ -1,0 +1,19 @@
+/* D12 PLAYERS TURN v1.7.9 — bold v1.7.7-style loser-choice icons */
+#finishForm .v179-loser-choice-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+#finishForm .v179-loser-choice-grid>label{position:relative;display:grid!important;grid-template-columns:58px minmax(0,1fr);grid-template-areas:"icon title" "icon desc";align-items:center;gap:2px 12px;min-height:92px;padding:14px 15px!important;border-radius:20px!important;border:1px solid var(--line)!important;background:linear-gradient(145deg,var(--panel2),color-mix(in srgb,var(--panel) 88%,var(--accent2) 12%))!important;color:var(--text)!important;font-size:0!important;cursor:pointer;box-shadow:inset 0 1px 0 rgba(255,255,255,.14);transition:transform .12s ease,border-color .12s ease,box-shadow .12s ease,background .12s ease}
+#finishForm .v179-loser-choice-grid>label::before{grid-area:icon;width:54px;height:54px;border-radius:16px;display:grid;place-items:center;background:color-mix(in srgb,var(--accent2) 10%,var(--panel));border:1px solid color-mix(in srgb,var(--accent2) 24%,var(--line));font-size:34px;line-height:1;font-weight:1000;color:var(--text);text-shadow:0 0 16px color-mix(in srgb,var(--accent2) 28%,transparent)}
+#finishForm .v179-loser-choice-grid>label[data-choice="appeal"]::before{content:"↻"}
+#finishForm .v179-loser-choice-grid>label[data-choice="remain"]::before{content:"⌛"}
+#finishForm .v179-loser-choice-grid>label[data-choice="change"]::before{content:"⇄"}
+#finishForm .v179-loser-choice-grid>label[data-choice="leave"]::before{content:"↗"}
+#finishForm .v179-loser-choice-grid>label>input{position:absolute;opacity:0;pointer-events:none}
+#finishForm .v179-loser-choice-grid>label>b{grid-area:title;font-size:15px!important;line-height:1.1;font-weight:1000;color:var(--text)}
+#finishForm .v179-loser-choice-grid>label>small{grid-area:desc;font-size:9px!important;line-height:1.35;color:var(--muted)}
+#finishForm .v179-loser-choice-grid>label:has(input:checked){border-color:var(--accent2)!important;background:linear-gradient(145deg,color-mix(in srgb,var(--accent2) 18%,var(--panel2)),var(--panel2))!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 0 0 2px color-mix(in srgb,var(--accent2) 14%,transparent),0 0 22px color-mix(in srgb,var(--accent2) 18%,transparent)}
+#finishForm .v179-loser-choice-grid>label:has(input:checked)::before{border-color:var(--accent2);background:color-mix(in srgb,var(--accent2) 22%,var(--panel));box-shadow:0 0 18px color-mix(in srgb,var(--accent2) 28%,transparent)}
+#finishForm .v179-loser-choice-grid>label:active{transform:scale(.985)}
+@media(max-width:620px){
+  #finishForm .v179-loser-choice-grid{grid-template-columns:1fr}
+  #finishForm .v179-loser-choice-grid>label{min-height:82px;grid-template-columns:52px minmax(0,1fr);padding:12px 13px!important}
+  #finishForm .v179-loser-choice-grid>label::before{width:48px;height:48px;font-size:30px}
+}
