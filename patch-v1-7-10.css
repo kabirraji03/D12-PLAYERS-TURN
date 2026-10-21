@@ -1,0 +1,90 @@
+/* D12 PLAYERS TURN v1.7.10 — unmistakably large loser-choice icons */
+#finishForm .v179-loser-choice-grid>label{
+  grid-template-columns:92px minmax(0,1fr)!important;
+  grid-template-areas:"icon title" "icon desc"!important;
+  min-height:124px!important;
+  padding:16px 18px!important;
+  gap:3px 16px!important;
+}
+#finishForm .v179-loser-choice-grid>label::before{
+  display:none!important;
+  content:none!important;
+}
+#finishForm .v179-loser-choice-grid .v1710-loss-icon{
+  grid-area:icon!important;
+  width:84px!important;
+  height:84px!important;
+  min-width:84px!important;
+  min-height:84px!important;
+  border-radius:22px!important;
+  display:grid!important;
+  place-items:center!important;
+  align-self:center!important;
+  justify-self:center!important;
+  background:color-mix(in srgb,var(--accent2) 12%,var(--panel))!important;
+  border:2px solid color-mix(in srgb,var(--accent2) 36%,var(--line))!important;
+  color:var(--text)!important;
+  font-family:"Arial Black","Segoe UI Symbol","Segoe UI Emoji",system-ui,sans-serif!important;
+  font-size:58px!important;
+  font-weight:1000!important;
+  line-height:.9!important;
+  letter-spacing:-.08em!important;
+  text-align:center!important;
+  text-shadow:
+    0 1px 0 currentColor,
+    0 0 18px color-mix(in srgb,var(--accent2) 36%,transparent)!important;
+  -webkit-text-stroke:1.35px currentColor!important;
+  transform:scale(1.04);
+  overflow:visible!important;
+}
+#finishForm .v179-loser-choice-grid>label[data-choice="remain"] .v1710-loss-icon{
+  font-size:54px!important;
+  -webkit-text-stroke:0!important;
+  letter-spacing:0!important;
+}
+#finishForm .v179-loser-choice-grid>label>b{
+  font-size:17px!important;
+  font-weight:1000!important;
+}
+#finishForm .v179-loser-choice-grid>label>small{
+  font-size:10px!important;
+}
+#finishForm .v179-loser-choice-grid>label:has(input:checked) .v1710-loss-icon{
+  border-color:var(--accent2)!important;
+  background:color-mix(in srgb,var(--accent2) 26%,var(--panel))!important;
+  box-shadow:
+    0 0 0 3px color-mix(in srgb,var(--accent2) 13%,transparent),
+    0 0 26px color-mix(in srgb,var(--accent2) 34%,transparent)!important;
+  transform:scale(1.1);
+}
+@media(max-width:620px){
+  #finishForm .v179-loser-choice-grid>label{
+    grid-template-columns:82px minmax(0,1fr)!important;
+    min-height:112px!important;
+    padding:14px!important;
+  }
+  #finishForm .v179-loser-choice-grid .v1710-loss-icon{
+    width:74px!important;
+    height:74px!important;
+    min-width:74px!important;
+    min-height:74px!important;
+    font-size:52px!important;
+    border-radius:20px!important;
+  }
+  #finishForm .v179-loser-choice-grid>label[data-choice="remain"] .v1710-loss-icon{
+    font-size:49px!important;
+  }
+}
+@media(max-width:380px){
+  #finishForm .v179-loser-choice-grid>label{
+    grid-template-columns:74px minmax(0,1fr)!important;
+    min-height:104px!important;
+  }
+  #finishForm .v179-loser-choice-grid .v1710-loss-icon{
+    width:66px!important;
+    height:66px!important;
+    min-width:66px!important;
+    min-height:66px!important;
+    font-size:46px!important;
+  }
+}
