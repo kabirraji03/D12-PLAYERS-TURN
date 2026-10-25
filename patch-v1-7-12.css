@@ -1,0 +1,3 @@
+/* D12 PLAYERS TURN v1.7.12 — immediate optimistic operational state */
+.rack-card,.approval-panel,.v166-queue-row,.transfer-status-card{transition:opacity .12s ease,transform .12s ease}
+html.v174-network-busy .rack-card{will-change:contents}
