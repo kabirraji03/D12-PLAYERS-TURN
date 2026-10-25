@@ -1,0 +1,6 @@
+.v1713-queue-list{max-height:55vh;overflow:auto;margin:16px 0}
+.v1713-queue-row{display:flex;align-items:center;gap:14px;padding:14px;border-bottom:1px solid rgba(150,180,170,.2)}
+.v1713-queue-row span{flex:1;overflow-wrap:anywhere}
+.v1713-queue-row.current{background:rgba(80,210,150,.15);border-radius:12px}
+.v1713-queue-row>b{font-size:.75rem;color:var(--accent)}
+#v1713QueueButtons{margin:16px 0}
