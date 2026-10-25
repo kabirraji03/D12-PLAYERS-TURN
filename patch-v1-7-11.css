@@ -1,0 +1,3 @@
+/* D12 PLAYERS TURN v1.7.11 — live dialog visual acknowledgement */
+#modalCard.v1711-live-update{animation:v1711LivePulse .22s ease-out}
+@keyframes v1711LivePulse{0%{filter:brightness(1.08)}100%{filter:brightness(1)}}
