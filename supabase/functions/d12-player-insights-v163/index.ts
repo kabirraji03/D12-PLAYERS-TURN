@@ -35,6 +35,6 @@ const bytes=Uint8Array.from(atob(photo.split(',')[1]),c=>c.charCodeAt(0));if(byt
 const r=await db.from('d12_turn_players').update({photo_data:photo,updated_at:new Date().toISOString()}).eq('id',p.id);if(r.error)throw new Error(r.error.message);return json({ok:true});
 }
 if(action==='performance_history'){
-const r=await db.rpc('d12_turn_performance_v174',{p_player:p.id,p_from:clean(body.from,10),p_to:clean(body.to,10)});if(r.error)return json({ok:false,error:r.error.message},400);return json({ok:true,...r.data});
+const r=await db.rpc('d12_turn_performance_v175',{p_player:p.id,p_from:clean(body.from,10),p_to:clean(body.to,10),p_period:clean(body.period,12)||'day'});if(r.error)return json({ok:false,error:r.error.message},400);return json({ok:true,...r.data});
 }
 return json({ok:true,player:{id:p.id,full_name:p.full_name,player_code:p.player_code},...await buildInsights(db,p)})}catch(e){console.error('d12-player-insights-v1.6.3',e);return json({ok:false,error:e instanceof Error?e.message:'Unexpected server error'},500)}})};
