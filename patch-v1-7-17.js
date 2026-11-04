@@ -1,5 +1,5 @@
 // D12 PLAYERS TURN v1.7.17 — Admin-only Players Today + fitted report dialog
-// UI/access correction only. No polling, bootstrap, refresh or operational logic changes.
+// UI/access correction only. No polling or operational sync logic changes.
 
 function v177StripPlayersTodayFromRack(html){
   const t=document.createElement('template');
