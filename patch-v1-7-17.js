@@ -50,3 +50,10 @@ openPlayersToday=async function(){
     if(live&&!$('#modal')?.classList.contains('hidden'))live.classList.add('v177-players-today-modal');
   }
 };
+
+
+const v177ClosePlayersTodayBase=v164ClosePlayersToday;
+v164ClosePlayersToday=function(){
+  $('#modalCard')?.classList.remove('v177-players-today-modal');
+  return v177ClosePlayersTodayBase();
+};
