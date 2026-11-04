@@ -1,0 +1,147 @@
+/* D12 PLAYERS TURN v1.7.17 — fitted Admin Players Today dialog */
+#modalCard.v177-players-today-modal{
+  box-sizing:border-box!important;
+  width:min(1280px,calc(100vw - 28px))!important;
+  max-width:calc(100vw - 28px)!important;
+  max-height:calc(100dvh - 28px)!important;
+  overflow-x:hidden!important;
+  overflow-y:auto!important;
+  padding:18px!important;
+}
+#modalCard.v177-players-today-modal>*,
+#modalCard.v177-players-today-modal #v176PlayersHost,
+#modalCard.v177-players-today-modal #v176CompareHost,
+#modalCard.v177-players-today-modal .v176-admin-log,
+#modalCard.v177-players-today-modal .v176-comparison{
+  box-sizing:border-box!important;
+  width:100%!important;
+  max-width:100%!important;
+  min-width:0!important;
+}
+#modalCard.v177-players-today-modal .modal-head{
+  width:100%;
+  min-width:0;
+}
+#modalCard.v177-players-today-modal .modal-head>div{
+  min-width:0;
+}
+#modalCard.v177-players-today-modal .modal-head h2,
+#modalCard.v177-players-today-modal .modal-head p{
+  overflow-wrap:anywhere;
+}
+#modalCard.v177-players-today-modal .v176-range-controls{
+  display:grid!important;
+  grid-template-columns:repeat(5,minmax(0,1fr))!important;
+  width:100%!important;
+  max-width:100%!important;
+  gap:9px!important;
+  align-items:end!important;
+}
+#modalCard.v177-players-today-modal .v176-range-controls>*{
+  min-width:0!important;
+  width:100%!important;
+}
+#modalCard.v177-players-today-modal .v176-range-controls input,
+#modalCard.v177-players-today-modal .v176-range-controls select,
+#modalCard.v177-players-today-modal .v176-range-controls button{
+  box-sizing:border-box!important;
+  width:100%!important;
+  max-width:100%!important;
+}
+#modalCard.v177-players-today-modal .v176-admin-log{
+  overflow:hidden!important;
+}
+#modalCard.v177-players-today-modal .v176-admin-log>header{
+  min-width:0!important;
+}
+#modalCard.v177-players-today-modal .v176-admin-log>header>div{
+  min-width:0!important;
+}
+#modalCard.v177-players-today-modal .v176-kpis{
+  grid-template-columns:repeat(6,minmax(0,1fr))!important;
+  width:100%!important;
+}
+#modalCard.v177-players-today-modal .v176-kpis>div{
+  min-width:0!important;
+}
+#modalCard.v177-players-today-modal .v176-kpis b,
+#modalCard.v177-players-today-modal .v176-kpis span{
+  overflow-wrap:anywhere;
+}
+#modalCard.v177-players-today-modal .v175-table-scroll{
+  display:block!important;
+  width:100%!important;
+  max-width:100%!important;
+  min-width:0!important;
+  overflow-x:auto!important;
+  overflow-y:visible!important;
+  -webkit-overflow-scrolling:touch;
+}
+#modalCard.v177-players-today-modal .v175-table-scroll table{
+  width:100%!important;
+  min-width:920px!important;
+  max-width:none!important;
+}
+#modalCard.v177-players-today-modal .v176-daily-break{
+  width:100%!important;
+  max-width:100%!important;
+  overflow:hidden!important;
+}
+#modalCard.v177-players-today-modal .v176-compare-grid{
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  width:100%!important;
+  min-width:0!important;
+}
+#modalCard.v177-players-today-modal .v176-compare-card,
+#modalCard.v177-players-today-modal .v176-compare-metric{
+  min-width:0!important;
+  max-width:100%!important;
+}
+#modalCard.v177-players-today-modal .v176-compare-metric>div:first-child{
+  min-width:0!important;
+  flex-wrap:wrap!important;
+}
+@media(max-width:1000px){
+  #modalCard.v177-players-today-modal .v176-range-controls{
+    grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  }
+  #modalCard.v177-players-today-modal .v176-kpis{
+    grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  }
+  #modalCard.v177-players-today-modal .v176-compare-grid{
+    grid-template-columns:1fr!important;
+  }
+}
+@media(max-width:700px){
+  #modalCard.v177-players-today-modal{
+    width:calc(100vw - 12px)!important;
+    max-width:calc(100vw - 12px)!important;
+    max-height:calc(100dvh - 12px)!important;
+    padding:12px!important;
+    border-radius:18px!important;
+  }
+  #modalCard.v177-players-today-modal .v176-range-controls{
+    grid-template-columns:1fr 1fr!important;
+  }
+  #modalCard.v177-players-today-modal .v176-range-controls button:last-of-type{
+    grid-column:1/-1;
+  }
+  #modalCard.v177-players-today-modal .v176-admin-log{
+    padding:10px!important;
+  }
+  #modalCard.v177-players-today-modal .v176-admin-log>header{
+    display:grid!important;
+    grid-template-columns:auto 1fr!important;
+    gap:10px!important;
+  }
+  #modalCard.v177-players-today-modal .v176-admin-log>header img{
+    width:58px!important;
+    height:58px!important;
+  }
+  #modalCard.v177-players-today-modal .v176-kpis{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  }
+  #modalCard.v177-players-today-modal .v175-table-scroll table{
+    min-width:820px!important;
+  }
+}
