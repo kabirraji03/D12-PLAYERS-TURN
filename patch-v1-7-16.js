@@ -3,7 +3,7 @@
 // ---------- CASHIER DAILY REPORT ----------
 function v176Num(v){const n=Number(v);return Number.isFinite(n)?Math.max(0,n):0}
 function v176Day(){return typeof v174Day==='function'?v174Day():new Date().toISOString().slice(0,10)}
-function v176Money(v){return typeof money==='function'?money(v):'₦'+Math.round(v176Num(v)).toLocaleString('en-NG')}
+function v176Money(v){const n=Number(v),x=Number.isFinite(n)?n:0;if(typeof money==='function')return money(x);return (x<0?'-':'')+'₦'+Math.abs(Math.round(x)).toLocaleString('en-NG')}
 function v176CalcCashierReport(){
   const f=$('#v176CashierReportForm');if(!f)return;
   const cash=v176Num(f.elements.cash_amount?.value),pos=v176Num(f.elements.pos_card_amount?.value),appeal=v176Num(f.elements.total_appeal_amount?.value);
@@ -45,7 +45,8 @@ async function saveCashierDailyReport176(e){
 
 // Mobile/tablet Cashier tabs: keep Player ID Request and add Daily Report.
 v171CashierTabs=function(){
-  return '<nav class="v171-cashier-tabs glass"><button class="active" type="button">₦ Cashier</button><button type="button" onclick="openPlayerIdRequest171()">▦ Player ID Request</button><button type="button" onclick="openCashierDailyReport176()">▤ Daily Report</button></nav>';
+  const report=role==='cashier'?'<button type="button" onclick="openCashierDailyReport176()">▤ Daily Report</button>':'';
+  return '<nav class="v171-cashier-tabs glass"><button class="active" type="button">₦ Cashier</button><button type="button" onclick="openPlayerIdRequest171()">▦ Player ID Request</button>'+report+'</nav>';
 };
 const v176CashierViewBase=cashierView;
 cashierView=function(){
