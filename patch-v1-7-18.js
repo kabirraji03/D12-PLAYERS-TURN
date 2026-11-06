@@ -186,3 +186,11 @@ v176DailyBreakdown=function(days){
   if(!days.length)return '';
   return '<details class="v176-daily-break"><summary>Daily breakdown ('+days.length+' day'+(days.length===1?'':'s')+')</summary><div class="v175-table-scroll"><table><thead><tr><th>Date</th><th>Players</th><th>Matches</th><th>B&R</th><th>Table Runs</th><th>Appeals</th><th>Appeal ₦</th><th>Game income</th><th>Total income</th></tr></thead><tbody>'+days.map(d=>'<tr><td>'+esc(d.date)+'</td><td>'+Number(d.players||0)+'</td><td>'+Number(d.matches||0)+'</td><td>'+Number(d.break_and_runs||0)+'</td><td>'+Number(d.table_runs||0)+'</td><td>'+Number(d.appeals||0)+'</td><td>'+esc(v176Money(d.appeal_amount||0))+'</td><td>'+esc(v176Money(d.game_income||0))+'</td><td>'+esc(v176Money(d.total_income||0))+'</td></tr>').join('')+'</tbody></table></div></details>';
 };
+
+
+v176PrintHTML=function(html,title){
+  const win=window.open('','_blank');if(!win)return toast('Allow popups to print.');
+  const styles=['./patch-v1-7-15.css','./patch-v1-7-16.css','./patch-v1-7-18.css'].map(x=>'<link rel="stylesheet" href="'+new URL(x,location.href).href+'">').join('');
+  win.document.write('<!doctype html><html><head><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+esc(title)+'</title>'+styles+'</head><body>'+html+'</body></html>');
+  win.document.close();win.addEventListener('load',()=>win.print(),{once:true});
+};
